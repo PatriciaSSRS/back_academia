@@ -25,6 +25,27 @@ A API sobe em `http://localhost:3333` (ajustável via `PORT` no `.env`, veja
 - `GET /health` — healthcheck
 - `GET /api/...` — recursos da API (veja `src/routes/`)
 
+## 📖 Documentação interativa (Swagger)
+
+Com o servidor rodando (`npm run dev`), abra
+[`http://localhost:3333/api-docs`](http://localhost:3333/api-docs) no
+navegador para ver a documentação OpenAPI/Swagger completa da API: todos os
+métodos, endpoints, parâmetros e o formato de retorno (schemas) de cada
+rota — e testar cada uma direto pela UI, sem precisar do Postman/Insomnia.
+
+Se preferir importar a spec em outra ferramenta, o JSON cru fica disponível
+em [`http://localhost:3333/api-docs.json`](http://localhost:3333/api-docs.json).
+
+**Autenticando pela própria UI:**
+
+1. Abra `POST /api/auth/login`, clique em "Try it out" e envie, por exemplo,
+   `{"identificador":"demo","senha":"demo123","perfil":"personal"}`.
+2. Copie o valor do campo `token` da resposta.
+3. Clique no botão **Authorize** (cadeado, no topo da página), cole o token
+   (sem o prefixo `Bearer `, o Swagger já adiciona) e confirme.
+4. A partir daí, toda rota marcada com o cadeado passa a enviar o header
+   `Authorization: Bearer <token>` automaticamente nas chamadas de teste.
+
 ## Credenciais de demo
 
 Todos os usuários usam a senha `demo123`.

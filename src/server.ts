@@ -1,9 +1,11 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import swaggerUi from 'swagger-ui-express';
 import routes from './routes';
 import { errorHandler } from './middlewares/error';
 import pool, { demoSeedReady } from './config/database';
+import { swaggerSpec } from './config/swagger';
 
 // Carregar variáveis de ambiente
 dotenv.config();
@@ -76,6 +78,21 @@ app.get('/health', (req, res) => {
   });
 });
 
+// ============================================
+// DOCUMENTAÇÃO (Swagger / OpenAPI)
+// ============================================
+
+// UI interativa em /api-docs
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
+  customSiteTitle: 'back_academia API — Docs',
+}));
+
+// JSON cru da spec OpenAPI (útil pra importar no Postman/Insomnia)
+app.get('/api-docs.json', (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  res.json(swaggerSpec);
+});
+
 // Rotas da API
 app.use('/api', routes);
 
@@ -110,6 +127,7 @@ async function startServer() {
       console.log(`📍 URL: http://localhost:${PORT}`);
       console.log(`🏥 Health: http://localhost:${PORT}/health`);
       console.log(`📚 API: http://localhost:${PORT}/api`);
+      console.log(`📖 Docs: http://localhost:${PORT}/api-docs`);
       console.log('');
       console.log('🎭 API mocada — dados em memória, resetam a cada reinício.');
       console.log('   Veja README.md para as credenciais de login de demo.');
