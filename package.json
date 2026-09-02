@@ -1,5 +1,5 @@
 {
-  "name": "demo-banco-academia",
+  "name": "back-academia",
   "version": "1.0.0",
   "description": "API mocada de portfólio (gestão de academia/personal trainer) — dados 100% fake, em memória, sem banco de dados real",
   "main": "dist/server.js",

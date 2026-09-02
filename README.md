@@ -1,8 +1,9 @@
-# demo-banco-academia
+# back_academia
 
 API REST **100% mocada**, feita para portfólio: simula o backend de um app
 de gestão de academia/personal trainer (alunos, treinos, agendamentos,
-presenças, pagamentos, avaliações...).
+presenças, pagamentos, avaliações...). O front que consome essa API está em
+[`front_academia`](https://github.com/PatriciaSSRS/front_academia).
 
 Não existe nenhuma conexão com banco de dados real, nenhum segredo, nenhuma
 integração externa de verdade. O "banco de dados" é um Postgres **em
